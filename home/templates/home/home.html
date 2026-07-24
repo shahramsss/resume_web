@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  خانه
+{% endblock %}
+
+{% block content %}
+  <!-- Hero Banner (Full Width واقعی) -->
+
+  <div class="container-fluid p-0">
+    <div class="w-100 " >
+      <div class="h-100 d-flex align-items-center justify-content-center text-center">
+        <div class="text-white px-3">
+          <div class="container">
+            <h1 class="display-4 fw-bold">سلام، من یک برنامه‌نویسم 👋</h1>
+            <p class="lead">توسعه‌دهنده Django | طراحی سایت | علاقه‌مند به تکنولوژی</p>
+            <a href="#projects" class="btn btn-warning btn-lg mt-3">مشاهده نمونه‌کار</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+
+  <div class="container">
+    <!-- About -->
+
+    <div class="row align-items-center mt-5">
+      <div class="col-md-6">
+        <h3>درباره من</h3>
+        <p class="text-muted mt-3">من یک توسعه‌دهنده Django هستم که روی پروژه‌های واقعی کار می‌کنم. علاقه‌مند به طراحی بک‌اند، API نویسی و بهینه‌سازی سیستم‌ها.</p>
+      </div>
+
+      <div class="col-md-6 text-center mt-4 mt-md-0">
+        <img src="{% static 'images/a.png' %}" class="img-fluid rounded-circle" style="max-width: 250px;" />
+      </div>
+    </div>
+
+    <!-- Skills -->
+
+    <div class="row text-center mt-5">
+      <h3 class="mb-4">مهارت‌ها</h3>
+
+      <div class="col-md-4 mb-4">
+        <div class="p-3 bg-white shadow-sm rounded">Python</div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="p-3 bg-white shadow-sm rounded">Django</div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="p-3 bg-white shadow-sm rounded">REST API</div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+
+    <div class="mt-5">
+      <h3 class="text-center mb-4">پروژه‌های من</h3>
+
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <img src="{% static 'images/project1.jpg' %}" class="card-img-top" />
+            <div class="card-body">
+              <h5>سیستم رزرو</h5>
+              <p class="text-muted">پیاده‌سازی با Django</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <img src="{% static 'images/project2.jpg' %}" class="card-img-top" />
+            <div class="card-body">
+              <h5>فروشگاه</h5>
+              <p class="text-muted">API محور</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <img src="{% static 'images/project3.jpg' %}" class="card-img-top" />
+            <div class="card-body">
+              <h5>فلش کارت</h5>
+              <p class="text-muted">اپ یادگیری لغت</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+
+    <div class="text-center mt-5 mb-5">
+      <h3>تماس با من</h3>
+      <p class="text-muted mt-3">برای همکاری پیام بده</p>
+
+      <a href="#" class="btn btn-dark mx-2">GitHub</a>
+      <a href="#" class="btn btn-outline-dark mx-2">Telegram</a>
+    </div>
+  </div>
+{% endblock %}
