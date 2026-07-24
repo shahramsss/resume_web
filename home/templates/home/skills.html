@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block title %}
+مهارت‌ها
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+body {
+    background: #f8f9fb;
+}
+
+.skill-section {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* کارت‌ها */
+.skill-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    height: 100%;
+    position: relative;
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.skill-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to left, #0d6efd, #6ea8fe);
+    border-radius: 15px 15px 0 0;
+}
+
+.skill-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+/* badge */
+.skill-badge {
+    background: rgba(13,110,253,0.08);
+    color: #0d6efd;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.skill-badge:hover {
+    background: #0d6efd;
+    color: #fff;
+}
+
+/* عنوان‌ها */
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: "";
+    width: 40px;
+    height: 3px;
+    background: #0d6efd;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/* انگلیسی */
+.ltr {
+    direction: ltr;
+    text-align: left;
+}
+
+</style>
+
+
+<div class="container mt-5 mb-5">
+
+    <!-- title -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-end">مهارت‌های من</h2>
+        <p class="text-muted text-end">
+            تکنولوژی‌ها و ابزارهایی که در توسعه پروژه‌ها استفاده می‌کنم
+        </p>
+    </div>
+
+
+    <!-- server -->
+    <div class="skill-section mb-5">
+        <h4 class="fw-bold mb-4 section-title text-end">
+            مهارت‌های سمت سرور
+        </h4>
+
+        <div class="row g-4">
+
+            <!-- Python -->
+            <div class="col-md-6">
+                <div class="skill-card">
+                    <h5 class="fw-bold mb-3 ltr">Python</h5>
+                    <div class="d-flex flex-wrap gap-2 ltr">
+                        <span class="badge skill-badge">OOP</span>
+                        <span class="badge skill-badge">Functional</span>
+                        <span class="badge skill-badge">Unit Testing</span>
+                        <span class="badge skill-badge">Virtual Env</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Django -->
+            <div class="col-md-6">
+                <div class="skill-card">
+                    <h5 class="fw-bold mb-3 ltr">Django</h5>
+                    <div class="d-flex flex-wrap gap-2 ltr">
+                        <span class="badge skill-badge">MVC</span>
+                        <span class="badge skill-badge">ORM</span>
+                        <span class="badge skill-badge">Template</span>
+                        <span class="badge skill-badge">Routing</span>
+                        <span class="badge skill-badge">View</span>
+                        <span class="badge skill-badge">REST API</span>
+                        <span class="badge skill-badge">Serializer</span>
+                        <span class="badge skill-badge">Permissions</span>
+                        <span class="badge skill-badge">Forms</span>
+                        <span class="badge skill-badge">Auth</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database -->
+            <div class="col-md-12">
+                <div class="skill-card">
+                    <h5 class="fw-bold mb-3 ltr">Database</h5>
+
+                    <div class="mb-3">
+                        <h6 class="fw-bold mb-2 text-primary ltr">SQL</h6>
+                        <div class="d-flex flex-wrap gap-2 ltr">
+                            <span class="badge skill-badge">PostgreSQL</span>
+                            <span class="badge skill-badge">SQLite</span>
+                            <span class="badge skill-badge">MySQL</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h6 class="fw-bold mb-2 text-success ltr">NoSQL</h6>
+                        <div class="d-flex flex-wrap gap-2 ltr">
+                            <span class="badge skill-badge">MongoDB</span>
+                            <span class="badge skill-badge">Redis</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- frontend -->
+    <div class="skill-section mb-5">
+        <h4 class="fw-bold mb-4 section-title text-end">
+            مهارت‌های سمت کاربر
+        </h4>
+
+        <div class="skill-card">
+            <h5 class="fw-bold mb-3 ltr">Web</h5>
+            <div class="d-flex flex-wrap gap-2 ltr">
+                <span class="badge skill-badge">HTML</span>
+                <span class="badge skill-badge">CSS</span>
+                <span class="badge skill-badge">Bootstrap</span>
+                <span class="badge skill-badge">jQuery</span>
+                <span class="badge skill-badge">Ajax</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- extra -->
+    <div class="skill-section mb-4">
+        <h4 class="fw-bold mb-4 section-title text-end">
+            مهارت‌های تکمیلی
+        </h4>
+
+        <div class="row g-4">
+
+            <!-- tools -->
+            <div class="col-md-6">
+                <div class="skill-card">
+                    <h5 class="fw-bold mb-3 ltr">Tools</h5>
+                    <div class="d-flex flex-wrap gap-2 ltr">
+                        <span class="badge skill-badge">Linux</span>
+                        <span class="badge skill-badge">Git</span>
+                        <span class="badge skill-badge">GitHub</span>
+                        <span class="badge skill-badge">Postman</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- devops -->
+            <div class="col-md-6">
+                <div class="skill-card">
+                    <h5 class="fw-bold mb-3 ltr">DevOps</h5>
+                    <div class="d-flex flex-wrap gap-2 ltr">
+                        <span class="badge skill-badge">Docker</span>
+                        <span class="badge skill-badge">Nginx</span>
+                        <span class="badge skill-badge">Celery</span>
+                        <span class="badge skill-badge">RabbitMQ</span>
+                        <span class="badge skill-badge">Design Pattern</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
