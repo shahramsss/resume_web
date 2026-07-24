@@ -10,10 +10,25 @@
     {% endblock %}
 </title>
 <style>
-
+@font-face {
+  font-family: 'Vazir';
+  src: url("{% static 'fonts/Vazir.woff2' %}") format('woff2'),
+       url("{% static 'fonts/Vazir.woff' %}") format('woff'),
+       url("{% static 'fonts/Vazir.ttf' %}") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 </style>
+
+<!--
+│   ├── byekan2.TTF
+│   ├── Vazir.ttf
+│   ├── Vazir.woff
+│   ├── Vazir.woff2
+│   └── yekan.ttf  -->
+
 <!-- Bootstrap CSS -->
-<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
 
 {% block extra_css %}
 {% endblock %}
@@ -21,7 +36,7 @@
 
 </head>
 
-<body class="d-flex flex-column min-vh-100 bg-warning-subtle ">
+<body class="d-flex flex-column min-vh-100 bg-warning-subtle " style="font-family: vazir">
 
 
 <!-- Navbar -->
