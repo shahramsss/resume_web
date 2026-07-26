@@ -1,202 +1,139 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
   مهارت‌ها
 {% endblock %}
 
 {% block content %}
-  <style>
-    body {
-      background: #f8f9fb;
-    }
-    
-    .skill-section {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    }
-    
-    /* کارت‌ها */
-    .skill-card {
-      background: #fff;
-      border-radius: 15px;
-      padding: 25px;
-      height: 100%;
-      position: relative;
-      transition: 0.3s;
-      border: 1px solid #eee;
-    }
-    
-    .skill-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(to left, #0d6efd, #6ea8fe);
-      border-radius: 15px 15px 0 0;
-    }
-    
-    .skill-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-    }
-    
-    /* badge */
-    .skill-badge {
-      background: rgba(13, 110, 253, 0.08);
-      color: #0d6efd;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      transition: 0.3s;
-    }
-    
-    .skill-badge:hover {
-      background: #0d6efd;
-      color: #fff;
-    }
-    
-    /* عنوان‌ها */
-    .section-title {
-      position: relative;
-      display: inline-block;
-      padding-bottom: 10px;
-    }
-    
-    .section-title::after {
-      content: '';
-      width: 40px;
-      height: 3px;
-      background: #0d6efd;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-    
-    /* انگلیسی */
-    .ltr {
-      direction: ltr;
-      text-align: left;
-    }
-  </style>
-<section class="pt-3">
+  <section class="py-5 ">
     <div class="container">
-        <h2 class="fw-bold mb-4">تحصیلات</h2>
-        <p class="mb-2">کارشناس ارشد نرم افزار دانشگاه صنعتی شاهرود در سال 0051</p>
-        <p class="mb-4">کارشناس فناوری اطلاعات دانشگاه پیام نور</p>
 
-        <h2 class="fw-bold mb-4">دوره های تخصصی</h2>
-        <p class="mb-2">بوت کمپ برنامه نویسی مکتب شریف</p>
-        <p class="mb-0">پایتون / جنگو (915+ ساعت) در سال 0055</p>
-    </div>
-</section>
 
-  <div class="container my-5">
-    <!-- title -->
-    <div class="text-center mb-5">
-      <h2 class="fw-bold text-end">مهارت‌های من</h2>
-      <p class="text-muted text-end">تکنولوژی‌ها و ابزارهایی که در توسعه پروژه‌ها استفاده می‌کنم</p>
-    </div>
-
-    <!-- server -->
-    <div class="skill-section mb-5">
-      <h4 class="fw-bold mb-4 section-title text-end">مهارت‌های سمت سرور</h4>
-
-      <div class="row g-4">
-        <!-- Python -->
-        <div class="col-md-6">
-          <div class="skill-card">
-            <h5 class="fw-bold mb-3 ltr">Python</h5>
-            <div class="d-flex flex-wrap gap-2 ltr">
-              <span class="badge skill-badge">Object Oriented Programing</span>
-              <span class="badge skill-badge">Functional Programing</span>
-              <span class="badge skill-badge">Unit Test</span>
-              <span class="badge skill-badge">Virtual Enviroment</span>
+      <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="card-body p-4 p-md-5">
+              <h2 class="h3 fw-bold mb-4">تحصیلات</h2>
+              <p class="fs-5 mb-3">کارشناس ارشد نرم افزار دانشگاه صنعتی شاهرود </p>
+              <p class="fs-5 mb-0">کارشناس فناوری اطلاعات دانشگاه پیام نور</p>
             </div>
           </div>
         </div>
 
-        <!-- Django -->
-        <div class="col-md-6">
-          <div class="skill-card">
-            <h5 class="fw-bold mb-3 ltr">Django</h5>
-            <div class="d-flex flex-wrap gap-2 ltr">
-              <span class="badge skill-badge">MVC</span>
-              <span class="badge skill-badge">ORM</span>
-              <span class="badge skill-badge">Template</span>
-              <span class="badge skill-badge">Routing</span>
-              <span class="badge skill-badge">View</span>
-              <span class="badge skill-badge">REST API</span>
-              <span class="badge skill-badge">Serializer</span>
-              <span class="badge skill-badge">Permissions</span>
-              <span class="badge skill-badge">Forms</span>
-              <span class="badge skill-badge">User Authentication</span>
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="card-body p-4 p-md-5">
+              <h2 class="h3 fw-bold mb-4">دوره‌های تخصصی</h2>
+              <p class="fs-5 mb-3">بوت کمپ برنامه نویسی مکتب شریف</p>
+              <p class="fs-5 mb-0">پایتون / جنگو (+360 ساعت) </p>
             </div>
           </div>
         </div>
+      </div>
+      <div class="text-center mb-5">
+        <h1 class="fw-bold display-6">مهارت‌های من</h1>
+        <p class="text-muted lead mb-0">تکنولوژی‌ها و ابزارهایی که در توسعه پروژه‌ها استفاده می‌کنم</p>
+      </div>
+      <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="h3 fw-bold mb-4">مهارت‌های سمت سرور</h2>
 
-        <!-- Database -->
-        <div class="col-md-12">
-          <div class="skill-card">
-            <h5 class="fw-bold mb-3 ltr">Database</h5>
-
-            <div class="mb-3">
-              <h6 class="fw-bold mb-2 text-primary ltr">SQL</h6>
-              <div class="d-flex flex-wrap gap-2 ltr">
-                <span class="badge skill-badge">PostgreSQL</span>
-                <span class="badge skill-badge">SQLite</span>
-                <span class="badge skill-badge">MySQL</span>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 h-100">
+                <h3 class="h4 fw-bold mb-3 text-start" dir="ltr">Python</h3>
+                <div class="d-flex flex-wrap gap-2" dir="ltr">
+                  <span class="badge text-bg-primary fs-6">Object Oriented Programing</span>
+                  <span class="badge text-bg-primary fs-6">Functional Programing</span>
+                  <span class="badge text-bg-primary fs-6">Unit Test</span>
+                  <span class="badge text-bg-primary fs-6">Virtual Enviroment</span>
+                </div>
               </div>
             </div>
 
-            <div>
-              <h6 class="fw-bold mb-2 text-success ltr">NoSQL</h6>
-              <div class="d-flex flex-wrap gap-2 ltr">
-                <span class="badge skill-badge">MongoDB</span>
-                <span class="badge skill-badge">Redis</span>
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 h-100">
+                <h3 class="h4 fw-bold mb-3 text-start" dir="ltr">Django</h3>
+                <div class="d-flex flex-wrap gap-2" dir="ltr">
+                  <span class="badge text-bg-success fs-6">MVC</span>
+                  <span class="badge text-bg-success fs-6">ORM</span>
+                  <span class="badge text-bg-success fs-6">Template</span>
+                  <span class="badge text-bg-success fs-6">Routing</span>
+                  <span class="badge text-bg-success fs-6">View</span>
+                  <span class="badge text-bg-success fs-6">REST API</span>
+                  <span class="badge text-bg-success fs-6">Serializer</span>
+                  <span class="badge text-bg-success fs-6">Permissions</span>
+                  <span class="badge text-bg-success fs-6">Forms</span>
+                  <span class="badge text-bg-success fs-6">User Authentication</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="border rounded-4 p-4">
+                <h3 class="h4 fw-bold mb-4 text-start" dir="ltr">Database</h3>
+
+                <div class="mb-4">
+                  <h4 class="h5 fw-bold text-primary mb-3 text-start" dir="ltr">SQL</h4>
+                  <div class="d-flex flex-wrap gap-2" dir="ltr">
+                    <span class="badge text-bg-primary fs-6">PostgreSQL</span>
+                    <span class="badge text-bg-primary fs-6">SQLite</span>
+                    <span class="badge text-bg-primary fs-6">MySQL</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="h5 fw-bold text-success mb-3 text-start" dir="ltr">NoSQL</h4>
+                  <div class="d-flex flex-wrap gap-2" dir="ltr">
+                    <span class="badge text-bg-success fs-6">MongoDB</span>
+                    <span class="badge text-bg-success fs-6">Redis</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- frontend -->
-    <div class="skill-section mb-5">
-      <h4 class="fw-bold mb-4 section-title text-end">مهارت‌های سمت کاربر</h4>
-
-      <div class="skill-card">
-        <h5 class="fw-bold mb-3 ltr">Web</h5>
-        <div class="d-flex flex-wrap gap-2 ltr">
-          <span class="badge skill-badge">HTML</span>
-          <span class="badge skill-badge">CSS</span>
-          <span class="badge skill-badge">Bootstrap</span>
-          <span class="badge skill-badge">jQuery</span>
-          <span class="badge skill-badge">Ajax</span>
+      <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="h3 fw-bold mb-4">مهارت‌های سمت کاربر</h2>
+          <div class="border rounded-4 p-4">
+            <h3 class="h4 fw-bold mb-3 text-start" dir="ltr">Web</h3>
+            <div class="d-flex flex-wrap gap-2" dir="ltr">
+              <span class="badge text-bg-info fs-6">HTML</span>
+              <span class="badge text-bg-info fs-6">CSS</span>
+              <span class="badge text-bg-info fs-6">Bootstrap</span>
+              <span class="badge text-bg-info fs-6">jQuery</span>
+              <span class="badge text-bg-info fs-6">Ajax</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- extra -->
-    <div class="skill-section mb-4">
-      <h4 class="fw-bold mb-4 section-title text-end">مهارت‌های تکمیلی</h4>
-
-      <div class="skill-card">
-        <div class="d-flex flex-wrap gap-2 ltr">
-         <span class="badge skill-badge">Linux</span>
-              <span class="badge skill-badge">Version Control</span>
-              <span class="badge skill-badge">GitHub</span>
-              <span class="badge skill-badge">Postman</span>
-              <span class="badge skill-badge">Docker</span>
-              <span class="badge skill-badge">Nginx</span>
-              <span class="badge skill-badge">Celery</span>
-              <span class="badge skill-badge">RabbitMQ</span>
-              <span class="badge skill-badge">Design Pattern</span>
+      <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="h3 fw-bold mb-4">مهارت‌های تکمیلی</h2>
+          <div class="d-flex flex-wrap gap-2" dir="ltr">
+            <span class="badge text-bg-dark fs-6">Linux</span>
+            <span class="badge text-bg-dark fs-6">Version Control</span>
+            <span class="badge text-bg-dark fs-6">GitHub</span>
+            <span class="badge text-bg-dark fs-6">Postman</span>
+            <span class="badge text-bg-dark fs-6">Docker</span>
+            <span class="badge text-bg-dark fs-6">Nginx</span>
+            <span class="badge text-bg-dark fs-6">Celery</span>
+            <span class="badge text-bg-dark fs-6">RabbitMQ</span>
+            <span class="badge text-bg-dark fs-6">Design Pattern</span>
+          </div>
         </div>
       </div>
+
+      <div class="text-center mt-4">
+        <a href="{% static 'doc/resume2.pdf' %}" class="btn btn-primary btn-lg px-4" target="_blank" rel="noopener noreferrer">
+          دانلود رزومه
+        </a>
+      </div>
     </div>
-  </div>
+  </section>
 {% endblock %}

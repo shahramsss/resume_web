@@ -3,18 +3,32 @@ from django.views import View
 
 
 class HomeView(View):
-    def get(self , request):
-        return render(request,"home/home.html")
+    def get(self, request):
+        return render(request, "home/home.html")
+
 
 class SkillsView(View):
-    def get(self , request):
-        return render(request,"home/skills.html")
+    def get(self, request):
+        return render(request, "home/skills.html")
+
 
 class AboutView(View):
-    def get(self , request):
-        return render(request,"home/about.html")
-        
-        
+    def get(self, request):
+        return render(request, "home/about.html")
+
+
 class ContactView(View):
-    def get(self , request):
-        return render(request,"home/contact.html")
+    def get(self, request):
+        return render(request, "home/contact.html")
+
+
+class Projectsiew(View):
+    pass
+    # def get(self , request):
+    #     return render(request,"home/contact.html")
+
+
+class ProjectDeiailView(View):
+    pass
+    # def get(self , request):
+    #     return render(request,"home/contact.html")
