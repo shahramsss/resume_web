@@ -9,3 +9,7 @@ class HomeView(View):
 class SkillsView(View):
     def get(self , request):
         return render(request,"home/skills.html")
+
+class AboutView(View):
+    def get(self , request):
+        return render(request,"home/about.html")
