@@ -35,6 +35,36 @@
   .skill-box:hover {
     transform: translateY(-8px);
   }
+
+  <style>body {
+    background: #f8f9fb;
+  }
+
+  .project-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+    background: #fff;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .badge-tech {
+    background: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+    font-size: 12px;
+  }
+</style>
+
 </style>
 <!-- Hero Banner (Full Width واقعی) -->
 <div class="hero mt-4">
@@ -45,7 +75,7 @@
     </h1>
 
     <p class="lead mb-4">
-    کارشناس ارشد نرم افزار    
+      کارشناس ارشد نرم افزار
     </p>
     <p class="lead mb-4">
       Django Developer | طراحی بک‌اند و APIهای حرفه‌ای
@@ -55,7 +85,7 @@
       <a href="#" class="btn btn-primary px-4 py-2 me-2">
         پروژه‌ها
       </a>
-      <a href="#" class="btn btn-outline-light px-4 py-2">
+      <a href="{% url 'home:contact' %}" class="btn btn-outline-light px-4 py-2">
         تماس با من
       </a>
     </div>
@@ -76,10 +106,10 @@
       <h3>درباره من</h3>
       <p class="text-muted mt-3">من یک توسعه‌دهنده Django هستم که روی پروژه‌های واقعی کار می‌کنم. علاقه‌مند به طراحی
         بک‌اند، API نویسی و بهینه‌سازی سیستم‌ها.</p>
-        <a href="{% static 'doc/resume2.pdf' %}" class="btn btn-primary mt-3" target="_blank" rel="noopener noreferrer">
-          دانلود رزومه
-        </a>
-      </div>
+      <a href="{% static 'doc/resume2.pdf' %}" class="btn btn-primary mt-3" target="_blank" rel="noopener noreferrer">
+        دانلود رزومه
+      </a>
+    </div>
 
     <div class="col-md-6 text-center mt-4 mt-md-0">
       <img src="{% static 'images/01.jpg' %}" class="img-fluid rounded" />
@@ -87,7 +117,7 @@
   </div>
 
   <!-- Skills -->
-  <div class="container mt-5 text-center "  >
+  <div class="container mt-5 text-center ">
     <h3 class="mb-4 fw-bold">مهارت‌ها</h3>
 
     <div class="row g-4">
@@ -111,19 +141,74 @@
   <div class="container mt-5">
     <h3 class="text-center mb-5 fw-bold">پروژه‌های من</h3>
 
- <div class="row g-4">
-  <div class="col-md-4">
-    <a href="https://amlakmabas.ir" class="text-decoration-none text-dark" target="_blank" rel="noopener noreferrer">
-      <div class="card shadow-sm h-100 border-0">
-        <img src="{% static 'images/amlak.png' %}" class="card-img-top" alt="کاگزاری املاک مبعث">
-        <div class="card-body">
-          <h5>کاگزاری املاک مبعث</h5>
-          <p class="text-muted">پیاده‌سازی با Django</p>
-        </div>
+    {% comment %} <div class="row g-4">
+      <div class="col-md-4">
+        <a href="https://amlakmabas.ir" class="text-decoration-none text-dark" target="_blank"
+          rel="noopener noreferrer">
+          <div class="card shadow-sm h-100 border-0">
+            <img src="{% static 'images/amlak.png' %}" class="card-img-top" alt="کاگزاری املاک مبعث">
+            <div class="card-body">
+              <h5>کاگزاری املاک مبعث</h5>
+              <p class="text-muted">پیاده‌سازی با Django</p>
+            </div>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
-</div>
+    </div> {% endcomment %}
+
+    <div class="row">
+      <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4 mb-4">
+          <div class="card project-card h-100">
+            <!-- image -->
+            {% if project.images.first %}
+            <img src="{{ project.images.first.image.url }}" class="card-img-top project-img" />
+            {% else %}
+            <img src="{% static 'images/default.jpg' %}" class="card-img-top project-img" />
+            {% endif %}
+
+            <!-- body -->
+            <div class="card-body d-flex flex-column">
+              <h5 class="fw-bold mb-2">{{ project.title }}</h5>
+
+              <p class="text-muted small">{{ project.description|truncatewords:20 }}</p>
+
+              <!-- technologies -->
+              {% if project.technologies.all %}
+              <div class="mb-3">
+                {% for tech in project.technologies.all %}
+                <span class="badge badge-tech me-1">{{ tech.name }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+
+              <!-- buttons -->
+              <div class="mt-auto">
+                {% if project.github_link %}
+                <a href="{{ project.github_link }}" class="btn btn-dark btn-sm">GitHub</a>
+                {% endif %}
+
+                {% if project.demo_link %}
+                <a href="{{ project.demo_link }}" class="btn btn-outline-primary btn-sm">Demo</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a class="btn btn-primary" style="width: 150px;" href="{% url 'home:projects' %}">پروژه های بیشتر...</a>
+        </div>
+        {% empty %}
+        <!-- empty state -->
+        <div class="col-12 text-center py-5">
+          <h4 class="fw-bold mb-3">هنوز پروژه‌ای اضافه نشده 😅</h4>
+
+          <p class="text-muted">به زودی پروژه‌ها اینجا نمایش داده می‌شوند</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
 
   </div>
   <!-- Contact -->
@@ -131,10 +216,13 @@
     <h3 class="fw-bold">تماس با من</h3>
     <p class="text-muted mt-3">برای همکاری پیام بدهید</p>
 
-      <a href="https://github.com/shahramsss" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm">GitHub</a>
-      <a href="https://www.linkedin.com/in/shahram-saffarzadeh-400810184" target="_blank" rel="noopener noreferrer" class="btn btn-outline-info btn-sm">LinkedIn</a>
-      <a href="https://t.me/s3shahram" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">Telegram</a>
-        
+    <a href="https://github.com/shahramsss" target="_blank" rel="noopener noreferrer"
+      class="btn btn-outline-dark btn-sm">GitHub</a>
+    <a href="https://www.linkedin.com/in/shahram-saffarzadeh-400810184" target="_blank" rel="noopener noreferrer"
+      class="btn btn-outline-info btn-sm">LinkedIn</a>
+    <a href="https://t.me/s3shahram" target="_blank" rel="noopener noreferrer"
+      class="btn btn-outline-primary btn-sm">Telegram</a>
+
   </div>
 </div>
 {% endblock %}
