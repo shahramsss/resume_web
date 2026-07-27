@@ -31,6 +31,6 @@ class ProjectsView(View):
 
 
 class ProjectDetailView(View):
-    pass
-    # def get(self , request):
-    #     return render(request,"home/contact.html")
+    def get(self , request , id):
+        projec = Project.objects.get(pk = id )
+        return render(request,"home/project_detail.html")

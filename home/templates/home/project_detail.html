@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  درباره من
+{% endblock %}
+
+{% block content %}
+  <h1>{{ project.title }}</h1>
+
+  <p>{{ project.description }}</p>
+
+  {% if project.github_link %}
+    <p>
+      <a href="{{ project.github_link }}" target="_blank">GitHub</a>
+    </p>
+  {% endif %}
+
+  {% if project.demo_link %}
+    <p>
+      <a href="{{ project.demo_link }}" target="_blank">Live Demo</a>
+    </p>
+  {% endif %}
+
+  <h3>Technologies</h3>
+  <ul>
+    {% for tech in project.technologies.all %}
+      <li>{{ tech.name }}</li>
+    {% empty %}
+      <li>No technology added.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Images</h3>
+  {% for img in project.images.all %}
+    <img src="{{ img.image.url }}" alt="{{ img.alt }}" width="300" />
+  {% empty %}
+    <p>No images available.</p>
+  {% endfor %}
+{% endblock %}

@@ -44,10 +44,11 @@
     </div>
 
     <div class="row">
-      <div class="row">
-        {% for project in projects %}
-          <div class="col-md-4 mb-4">
-            <div class="card project-card h-100">
+      {% for project in projects %}
+        <div class="col-md-4 mb-4">
+          <!-- کل کارت درون یک تگ a با استایل بدون خط زیرین قرار می‌گیرد -->
+          <a href="{% url 'home:project_detail' project.id %}" class="text-decoration-none text-dark d-block h-100">
+            <div class="card project-card h-100 transition-hover">
               <!-- image -->
               {% if project.images.first %}
                 <img src="{{ project.images.first.image.url }}" class="card-img-top project-img" />
@@ -72,26 +73,25 @@
 
                 <!-- buttons -->
                 <div class="mt-auto">
+                  <!-- نکته: برای دکمه‌های داخلی بهتر است از تگ span یا دکمه‌های با توقف رویداد استفاده شود تا تداخل تگ a در a پیش نیاید -->
                   {% if project.github_link %}
-                    <a href="{{ project.github_link }}" class="btn btn-dark btn-sm">GitHub</a>
+                    <span class="btn btn-dark btn-sm me-1" onclick="event.preventDefault(); window.open('{{ project.github_link }}', '_blank');">GitHub</span>
                   {% endif %}
 
                   {% if project.demo_link %}
-                    <a href="{{ project.demo_link }}" class="btn btn-outline-primary btn-sm">Demo</a>
+                    <span class="btn btn-outline-primary btn-sm" onclick="event.preventDefault(); window.open('{{ project.demo_link }}', '_blank');">Demo</span>
                   {% endif %}
                 </div>
               </div>
             </div>
-          </div>
-        {% empty %}
-          <!-- empty state -->
-          <div class="col-12 text-center py-5">
-            <h4 class="fw-bold mb-3">هنوز پروژه‌ای اضافه نشده 😅</h4>
-
-            <p class="text-muted">به زودی پروژه‌ها اینجا نمایش داده می‌شوند</p>
-          </div>
-        {% endfor %}
-      </div>
+          </a>
+        </div>
+      {% empty %}
+        <div class="col-12 text-center py-5">
+          <h4 class="fw-bold mb-3">هنوز پروژه‌ای اضافه نشده 😅</h4>
+          <p class="text-muted">به زودی پروژه‌ها اینجا نمایش داده می‌شوند</p>
+        </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock %}
