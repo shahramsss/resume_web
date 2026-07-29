@@ -2,37 +2,110 @@
 {% load static %}
 
 {% block title %}
-جزئیات پروژه 
+  جزئیات پروژه
 {% endblock %}
-
-
 
 {% block content %}
   <div class="container py-5">
     <div class="row">
-      
       <!-- تصاویر پروژه -->
       <div class="col-md-6 mb-4">
         {% if project.images.all %}
-          <div class="row g-3">
+          <!-- تصویر اصلی که قابلیت کلیک دارد -->
+          <div class="position-relative mb-3">
+            {% with first_img=project.images.all.0 %}
+              <img id="viewMainImage" src="{{ first_img.image.url }}" alt="{{ first_img.alt|default:project.title }}" class="img-fluid rounded shadow-sm w-100 object-fit-cover" style="height: 450px; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#imageModal" />
+            {% endwith %}
+            <div class="position-absolute bottom-0 end-0 m-3">
+              <span class="badge bg-dark opacity-75 p-2"><i class="bi bi-fullscreen"></i> مشاهده گالری</span>
+            </div>
+          </div>
+
+          <!-- نوار افقی تصاویر کوچک زیر تصویر اصلی (اختیاری برای زیبایی صفحه) -->
+          <div class="d-flex gap-2 overflow-x-auto pb-2" style="white-space: nowrap;">
             {% for img in project.images.all %}
-              <div class="col-12">
-                <img src="{{ img.image.url }}" alt="{{ img.alt }}" class="img-fluid rounded shadow-sm w-100">
-              </div>
+              <img src="{{ img.image.url }}" class="rounded border" style="height: 70px; width: 100px; object-fit: cover; cursor: pointer;" onclick="openModalWithImage('{{ img.image.url }}', {{ forloop.counter0 }})" />
             {% endfor %}
           </div>
         {% else %}
-          <img src="{% static 'images/default.jpg' %}" alt="default image" class="img-fluid rounded shadow-sm w-100">
+          <img src="{% static 'images/default.jpg' %}" class="img-fluid rounded shadow-sm w-100" />
         {% endif %}
       </div>
+
+      <!-- Bootstrap Modal -->
+      <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content bg-dark border-0">
+            <div class="modal-header border-0">
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0 text-center">
+              <!-- تصویر بزرگ داخل مدال -->
+              <img src="" id="modalLargeImage" class="img-fluid" style="max-height: 70vh;" />
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+              <!-- نوار افقی تصاویر در انتهای مدال -->
+              <div class="d-flex gap-2 overflow-x-auto py-2 w-100 justify-content-center">
+                {% for img in project.images.all %}
+                  <img src="{{ img.image.url }}" class="rounded border border-secondary modal-thumb" style="height: 60px; width: 80px; object-fit: cover; cursor: pointer;" onclick="updateModalImage('{{ img.image.url }}', this)" />
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        // تابعی برای باز کردن مدال با یک عکس خاص (وقتی روی تامنیل‌های صفحه کلیک می‌شود)
+        function openModalWithImage(url, index) {
+          const modalImg = document.getElementById('modalLargeImage')
+          modalImg.src = url
+        
+          // باز کردن مدال با استفاده از Bootstrap API
+          const myModal = new bootstrap.Modal(document.getElementById('imageModal'))
+          myModal.show()
+        
+          // هایلایت کردن تصویر انتخاب شده در نوار مدال
+          highlightThumbInModal(url)
+        }
+        
+        // تابعی برای تغییر تصویر بزرگ داخل مدال
+        function updateModalImage(url, element) {
+          document.getElementById('modalLargeImage').src = url
+        
+          // استایل دهی به تامنیل فعال
+          document.querySelectorAll('.modal-thumb').forEach((img) => {
+            img.classList.replace('border-light', 'border-secondary')
+          })
+          element.classList.replace('border-secondary', 'border-light')
+          element.classList.add('border-2')
+        }
+        
+        // وقتی مدال باز می‌شود (از طریق کلیک روی عکس اصلی)، اولین عکس را ست کند
+        const imageModal = document.getElementById('imageModal')
+        imageModal.addEventListener('show.bs.modal', function (event) {
+          const mainImgUrl = document.getElementById('viewMainImage').src
+          const modalLargeImg = document.getElementById('modalLargeImage')
+          if (!modalLargeImg.src || modalLargeImg.src === window.location.href) {
+            modalLargeImg.src = mainImgUrl
+          }
+        })
+        
+        function highlightThumbInModal(url) {
+          document.querySelectorAll('.modal-thumb').forEach((img) => {
+            if (img.src === url) {
+              img.classList.replace('border-secondary', 'border-light')
+            } else {
+              img.classList.replace('border-light', 'border-secondary')
+            }
+          })
+        }
+      </script>
 
       <!-- اطلاعات پروژه -->
       <div class="col-md-6">
         <h1 class="fw-bold mb-3">{{ project.title }}</h1>
 
-        <p class="text-muted mb-4">
-          {{ project.description }}
-        </p>
+        <p class="text-muted mb-4">{{ project.description }}</p>
 
         <!-- تکنولوژی‌ها -->
         <h5 class="fw-bold mb-2">تکنولوژی‌ها</h5>
@@ -47,20 +120,14 @@
         <!-- لینک‌ها -->
         <div class="d-flex gap-2 flex-wrap">
           {% if project.github_link %}
-            <a href="{{ project.github_link }}" target="_blank" class="btn btn-dark">
-              GitHub
-            </a>
+            <a href="{{ project.github_link }}" target="_blank" class="btn btn-dark">GitHub</a>
           {% endif %}
 
           {% if project.demo_link %}
-            <a href="{{ project.demo_link }}" target="_blank" class="btn btn-outline-primary">
-              Live Demo
-            </a>
+            <a href="{{ project.demo_link }}" target="_blank" class="btn btn-outline-primary">Live Demo</a>
           {% endif %}
 
-          <a href="{% url 'home:projects' %}" class="btn btn-secondary">
-            بازگشت
-          </a>
+          <a href="{% url 'home:projects' %}" class="btn btn-secondary">بازگشت</a>
         </div>
       </div>
     </div>
